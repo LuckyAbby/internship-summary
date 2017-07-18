@@ -1,5 +1,5 @@
 ## 记录下来实习期间踩的 JS 的坑
-### 注意mouseenter/mouseover mouseleave/mouseout的区别
+### 1.注意mouseenter/mouseover mouseleave/mouseout的区别
 这个问题当初是由 轮播条鼠标移上去之后无法暂停导致的，后来查看原因发现是因为 mouseover 会冒泡的原因。
 
 #### 进入
