@@ -1,6 +1,4 @@
-record the problems I encountered when learning react
-
-
+## 记录下来实习期间踩的 React 的坑
 
 ### 当React里面需要发送Ajax请求的时
 React不负责处理网络请求，如果想在React里面处理网络请求，一般是在componentDidMount阶段发送Ajax请求，那得到的数据应该存放在哪里？
