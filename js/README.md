@@ -29,3 +29,92 @@ mouseover/mouseout在原生JS中一直都是有的，也就是onmouseover和onmo
 
 ##### 2. 鼠标移出时，触发mousemove、mouseleave和mouseout事件
 所有浏览器的顺序都是(1)mousemove、(2)mouseout和(3)mouseleave事件
+
+### 2.数组、对象、字符串常用转换
+
+因为实习做的产品主要是 B 端产品，与后端之间数据交互的数据结构一般比较复杂，涉及到数组、对象以及字符串之间互相转换等等。
+
+#### 1.记录一种将数组转换成对象的方法：
+
+一般对于一个表格的数据后端一般是返回一个对象数组给前端，但是如果前端需要的是一个大对象做另外一些处理。这个时候可以：
+
+```
+// res是返回来的数组
+const data = {};
+Object.keys(res).forEach(item => {
+data[item] = res[item];
+});
+```
+这里介绍一下 Object.keys 这个方法。根据 MDN
+
+> Object.keys() 方法会返回一个由一个给定对象的自身可枚举属性组成的数组，数组中属性名的排列顺序和使用 for...in 循环遍历该对象时返回的顺序一致 （两者的主要区别是 一个 for-in 循环还会枚举其原型链上的属性）。
+
+举个例子：
+```
+const arr = ["abby", "node"];
+console.log(Object.keys(arr)); //["0", "1"]
+```
+数组也是对象，因此对数组使用这个方法就会得到数组的索引，使用循环可以给一个空对象添加上属性(数组的索引)与对应的值，这个时候数组就转化成对象啦。也是小 tips。
+
+至于对象实例转换成数组，只要遍历对象实例上面的属性，然后赋值给空数组的每个值。
+
+```
+const data = [];
+let i = 0;
+for (let prop in selected) {
+  if (selected.hasOwnProperty(prop)) {
+    data[i++] = selected[prop];
+  }
+}
+```
+
+#### 4.记录一些经常容易忘记的 api
+
+对于字符串
+
+##### 1.slice(beginSlice[, endSlice])
+
+1.索引（以 0 为基数）截取一个字符串并返回新的字符串，参数是负数的时候相当于 length+endSlice
+```
+var str1 = 'The morning is upon us.';
+var str2 = str1.slice(4, -2); // 不包含倒数第二个字符串
+
+console.log(str2); // OUTPUT: morning is upon u
+```
+
+对于数组
+
+##### 1.slice()
+
+包含开始位置不包含结束位置地浅拷贝一份数组，并返回新数组
+```
+var fruits = ['Banana', 'Orange', 'Lemon', 'Apple', 'Mango'];
+var citrus = fruits.slice(1, 3);
+
+// fruits contains ['Banana', 'Orange', 'Lemon', 'Apple', 'Mango']
+// citrus contains ['Orange','Lemon']
+```
+
+##### 2.splice
+
+splice() 方法通过删除现有元素和/或添加新元素来更改一个数组的内容。不返回新的数组，在原数组上面操作
+```
+var myFish = ['angel', 'clown', 'mandarin', 'sturgeon'];
+
+myFish.splice(2, 0, 'drum'); // 在索引为2的位置插入'drum'
+// myFish 变为 ["angel", "clown", "drum", "mandarin", "sturgeon"]
+
+myFish.splice(2, 1); // 从索引为2的位置删除一项（也就是'drum'这一项）
+// myFish 变为 ["angel", "clown", "mandarin", "sturgeon"]
+
+```
+
+##### 3. find ／ findIndex
+
+对数组进行遍历找到满足测试函数的第一个元素的值/索引
+
+##### 4. filterfilter
+
+方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。
+
+
