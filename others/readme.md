@@ -13,3 +13,11 @@ if (!window.location.origin) {
   window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
 }
 ```
+
+### git rebase
+
+假设我的远程分支是 origin, 我新建了一个分支是 another,然后在分支上做了一些修改，做了两个提交。
+
+这个时候有人已经基于 origin 做了一些提交，这个时候样子大概是：
+
+![](http://ojzeprg7w.bkt.clouddn.com/rebase1.png)
