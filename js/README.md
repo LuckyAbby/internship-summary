@@ -109,12 +109,15 @@ myFish.splice(2, 1); // 从索引为2的位置删除一项（也就是'drum'这�
 
 ```
 
-##### 3. find ／ findIndex
+##### 3.find ／ findIndex
 
 对数组进行遍历找到满足测试函数的第一个元素的值/索引
 
-##### 4. filterfilter
+##### 4.filter
 
 方法创建一个新数组, 其包含通过所提供函数实现的测试的所有元素。
+
+### js异步编程
+js异步编程主要分为回调函数、promise、以及async、await
 
 

@@ -26,7 +26,7 @@ if (!window.location.origin) {
 
 ![](http://ojzeprg7w.bkt.clouddn.com/rebase2.png)
 
-这个时候分支看上去就很乱，有个更好用的命令叫 git rebase。
+这个时候分支看上去就很乱，有个更好用的命令叫 git rebase master。
 
 这个命令会把 C5 C6 里面产生的变化补丁在 C4 的基础上再打一遍。它会回到两个分支最近的祖先元素就是 C2，根据 mywork 的后续若干次提交生成一系列文件补丁（这里是 C5' C6'），以 origin 分支最后一个提交对象（C4）为新的出发点，逐个应用之前的文件补丁，最后生成一个新的合并对象（C7'），从而改写 mywork 的提交历史，使它成为 origin 分支的直接下游。最后的结果如图：
 
@@ -39,5 +39,7 @@ if (!window.location.origin) {
 在使用 rebase 的时候可能会提示我们有冲突，这个时候需要我们手动去解决冲突，解决完之后直接使用 git add 去更新索引，之后使用`git rebase --continue`使得 git 使用余下的补丁。
 
 可以在任意时候通过`git rebase --abort`来停止rebase,这个时候 mywork 分支会回到 rebase 开始前的状态。
+
+
 
 
