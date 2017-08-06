@@ -40,6 +40,40 @@ if (!window.location.origin) {
 
 可以在任意时候通过`git rebase --abort`来停止rebase,这个时候 mywork 分支会回到 rebase 开始前的状态。
 
+### Linux 系统用户账号管理
+#### 1.添加新的用户账号
 
+```
+useradd 选项 用户名
+其中各选项含义如下：
+-c comment 指定一段注释性描述。
+-d 目录 指定用户主目录，如果此目录不存在，则同时使用-m选项，可以创建主目录。
+-g 用户组 指定用户所属的用户组。
+-G 用户组，用户组 指定用户所属的附加组。
+-s Shell文件 指定用户的登录Shell。
+-u 用户号 指定用户的用户号，如果同时有-o选项，则可以重复使用其他用户的标识号。
+```
+例如：
+```
+# useradd -s /bin/sh -g group –G adm,root gem
+此命令新建了一个用户gem，该用户的登录Shell是/bin/sh，它属于group用户组，同时又属于adm和root用户组，其中group用户组是其主组
+```
+#### 2.删除账号
 
+如果一个用户的账号不再使用，可以从系统中删除。删除用户账号就是要将/etc/passwd等系统文件中的该用户记录删除，必要时还删除用户的主目录。删除一个已有的用户账号使用userdel命令，其格式如下：
 
+```
+userdel 选项 用户名
+常用的选项是-r，它的作用是把用户的主目录一起删除。
+例如：
+# userdel sam
+此命令删除用户sam在系统文件中（主要是/etc/passwd, /etc/shadow, /etc/group等）的记录，同时删除用户的主目录。
+```
+
+#### 3.修改账号
+参数同增加新用户
+
+```
+usermod -s /bin/ksh -d /home/z –g developer sam
+此命令将用户sam的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。
+```
