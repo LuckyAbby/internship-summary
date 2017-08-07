@@ -77,3 +77,10 @@ userdel 选项 用户名
 usermod -s /bin/ksh -d /home/z –g developer sam
 此命令将用户sam的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。
 ```
+### jQuery 使用 FormData 上传文件
+
+使用 jQuery 通过FormData对象上传文件时需要注意:
+
+(1）processData设置为false。因为data值是FormData对象，不需要对数据做处理
+
+(2）contentType设置为false。因为是由<form>表单构造的FormData对象，将 contentType 设置为 false 是为了避免 jQuery 对其操作，从而失去分界符，而使服务器不能正常解析文件。
