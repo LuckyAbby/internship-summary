@@ -74,4 +74,6 @@ function lazyload() {
 }
 var loadImages = lazyload();
 loadImages();          //初始化首页的页面图片
+window.addEventListener('scroll', throttle(loadImages, 500, 1000), false);
+
 ```
