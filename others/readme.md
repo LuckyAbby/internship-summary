@@ -84,3 +84,34 @@ usermod -s /bin/ksh -d /home/z –g developer sam
 (1）processData设置为false。因为data值是FormData对象，不需要对数据做处理
 
 (2）contentType设置为false。因为是由<form>表单构造的FormData对象，将 contentType 设置为 false 是为了避免 jQuery 对其操作，从而失去分界符，而使服务器不能正常解析文件。
+
+### clientHeight srcollHeight offsetHeight
+
+![](http://ojzeprg7w.bkt.clouddn.com/clientheight.png)
+
+clientHeight: 内部可视区域大小。
+
+offsetHeight：整个可视区域大小，包括border和scrollbar在内。
+
+scrollHeight：元素内容的高度，包括溢出部分。
+
+scrollTop：元素内容向上滚动了多少像素，如果没有滚动则为0。
+
+innerHeight是DOM视口的大小，包括滚动条。
+
+outerHeight是整个浏览器窗口的大小，包括窗口标题、工具栏、状态栏等。
+
+```
+var height = window.innerHeight
+    || document.documentElement.clientHeight
+    || document.body.clientHeight;
+```
+事实上后两种方式获取的高度和window.innerHeight是不一样的，这3个属性的值逐个变小。 
+
+具体说来，window.innerHeight包括整个DOM：内容、边框以及滚动条。
+
+documentElement.clientHeight不包括整个文档的滚动条，但包括<html>元素的边框。
+
+body.clientHeight不包括整个文档的滚动条，也不包括<html>元素的边框，也不包括<body>的边框和滚动条。
+
+offsetTop: 当前元素顶部距离最近父元素顶部的距离,和有没有滚动条没有关系。单位px，只读元素。
