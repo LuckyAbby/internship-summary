@@ -120,4 +120,9 @@ myFish.splice(2, 1); // 从索引为2的位置删除一项（也就是'drum'这�
 ### js异步编程
 js异步编程主要分为回调函数、promise、以及async、await
 
+回调最大的问题是无法完全信任回调函数的操作，而promise 主要解决控制反转的问题
+
+async await 可以像写同步代码一样写异步
+
+
 
