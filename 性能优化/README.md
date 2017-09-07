@@ -11,8 +11,8 @@
 ```
 function lazyload() {
 	var images = document.getElementsByTagName('img');
-	var len    = images.length;
-	var n      = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历		
+	var len = images.length;
+	var n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历		
 	return function() {
 	    var seeHeight = document.documentElement.clientHeight;
 		var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -57,8 +57,8 @@ function throttle(fn, delay, atleast) {
 }
 function lazyload() {
     var images = document.getElementsByTagName('img');
-    var len    = images.length;
-    var n      = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历		
+    var len = images.length;
+    var n = 0;      //存储图片加载到的位置，避免每次都从第一张图片开始遍历		
     return function() {
 	    var seeHeight = document.documentElement.clientHeight;
 	    var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -77,3 +77,7 @@ loadImages();          //初始化首页的页面图片
 window.addEventListener('scroll', throttle(loadImages, 500, 1000), false);
 
 ```
+
+## localStorage
+
+提到 localStorage 更多人想到的其实是数据存储，相比于 cookie ,localStorage 最大的数据存储量是 5M , 适合存储一些数据量特别大的数据，比如一些静态页面。localStorage 通过调用 Window.localStorage 创建 Storage 对象，通过 Storage 对象，可以设置、获取和移除数据项。对于每个源（origin）sessionStorage 和 localStorage 使用不同的 Storage 对象——独立运行和控制。通过使用 localStorage.setItem 与 getItem 等一系列 API 可以存储自己想储存的数据。其实也有很多缺点，需要自己根据自己的项目是否真的需要，引入的成本等等去衡量。
