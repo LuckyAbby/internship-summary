@@ -1,11 +1,11 @@
 ## 记录下来实习期间踩的 其他 类的一些坑或者总结
-### learn RESTful api
+### 1.learn RESTful api
 
 Learn RESTful api and write a blog about it.
 
 Here is it : [我所理解的RESTful api](http://luckyabby.com/2017/07/10/%E6%88%91%E6%89%80%E7%90%86%E8%A7%A3%E7%9A%84RESTful-api/)
 
-### IE 不支持 window.location.origin
+### 2.IE 不支持 window.location.origin
 
 兼容性的写法：
 ```
@@ -14,7 +14,7 @@ if (!window.location.origin) {
 }
 ```
 
-### git rebase
+### 3.git rebase
 
 假设我的远程分支是 origin, 我新建了一个分支是 mywork,然后在分支上做了一些修改，做了两个提交 C3 C4。
 
@@ -40,7 +40,7 @@ if (!window.location.origin) {
 
 可以在任意时候通过`git rebase --abort`来停止rebase,这个时候 mywork 分支会回到 rebase 开始前的状态。
 
-### Linux 系统用户账号管理
+### 4.Linux 系统用户账号管理
 #### 1.添加新的用户账号
 
 ```
@@ -77,7 +77,7 @@ userdel 选项 用户名
 usermod -s /bin/ksh -d /home/z –g developer sam
 此命令将用户sam的登录Shell修改为ksh，主目录改为/home/z，用户组改为developer。
 ```
-### jQuery 使用 FormData 上传文件
+### 5.jQuery 使用 FormData 上传文件
 
 使用 jQuery 通过FormData对象上传文件时需要注意:
 
@@ -85,7 +85,7 @@ usermod -s /bin/ksh -d /home/z –g developer sam
 
 (2）contentType设置为false。因为是由<form>表单构造的FormData对象，将 contentType 设置为 false 是为了避免 jQuery 对其操作，从而失去分界符，而使服务器不能正常解析文件。
 
-### clientHeight srcollHeight offsetHeight
+### 6.clientHeight srcollHeight offsetHeight
 
 ![](http://ojzeprg7w.bkt.clouddn.com/clientheight.png)
 
@@ -106,7 +106,7 @@ var height = window.innerHeight
     || document.documentElement.clientHeight
     || document.body.clientHeight;
 ```
-事实上后两种方式获取的高度和window.innerHeight是不一样的，这3个属性的值逐个变小。 
+事实上后两种方式获取的高度和window.innerHeight是不一样的，这3个属性的值逐个变小。
 
 具体说来，window.innerHeight包括整个DOM：内容、边框以及滚动条。
 
