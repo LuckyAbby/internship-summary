@@ -135,3 +135,29 @@ fetch默认不会把cookie带上，不管是同域还是跨域；因此对于有
 这个属性有三个值，omit: 默认值，表示忽略cookie的发送；same-origin: 表示cookie只能同域发送，不能跨域发送；include: cookie既可以同域发送，也可以跨域发送。
 
 因此只需要使用fetch(url,{credentials: 'include'})就可以使得发出的请求带上cookie信息了。
+
+### 5.将数字转换成货币
+
+自己用循环写了一个函数
+```
+function toThousands(num) {
+  let count = 0
+  let result = []
+  const indexPoint = String(num).indexOf('.')
+  const interPart= String(num).split('.')[0]
+  const interArray = interPart.split('')
+  for(let i = interArray.length - 1; i >= 0; i--) {
+    count++
+    result.unshift(interArray[i])
+    if(count % 3 === 0 && i != 0) {
+        result.unshift(',')
+    }
+  }
+  if (indexPoint > 1) {
+    const pointPart = String(num).split('.')[1]
+    return `${result.join('')}.${pointPart}`
+  }
+  return result.join('')
+}
+```
+其实更简单的还有正则，但是最简单的是原生的api:`Number.prototype.toLocaleString()`，可以快速转换成各个国家的货币表示。
