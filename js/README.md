@@ -160,4 +160,21 @@ function toThousands(num) {
   return result.join('')
 }
 ```
+或者还有另一种循环的写法:
+```
+function toThousands(num) {
+  let result = ''
+  const indexPoint = String(num).indexOf('.')
+  let interPart = String(num).split('.')[0]
+  while(interPart.length > 3) {
+    result = `,${interPart.slice(-3)}${result}`
+    interPart = interPart.slice(0, interPart.length - 3)
+  }
+  if (indexPoint > 1) {
+    const pointPart = String(num).split('.')[1]
+    return `${interPart}${result}.${pointPart}`
+  }
+  return `${interPart}${result}`
+}
+```
 其实更简单的还有正则，但是最简单的是原生的api:`Number.prototype.toLocaleString()`，可以快速转换成各个国家的货币表示。
