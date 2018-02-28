@@ -178,3 +178,9 @@ function toThousands(num) {
 }
 ```
 其实更简单的还有正则，但是最简单的是原生的api:`Number.prototype.toLocaleString()`，可以快速转换成各个国家的货币表示。
+
+### 6.前端实现一键复制
+
+复制的基本思路就是选中+复制，其中选中可以使用表单元素的select()方法，注意只有 input 和 textarea 可以执行 select() 方法，复制可以使用 API`document.execCommand()`。
+
+这样最简单的思路就是在页面中创建一个 input 元素，但是次元素不能设置成`display:none`，可以设置成`position:relative;left:-9999px`，这样DOM结构也存在。这样再将此input元素的值设置成需要复制的内容，再使用input.select()方法选中，最后使用`document.execCommand("copy")`即可执行复制命令。
