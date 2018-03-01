@@ -186,7 +186,7 @@ function toThousands(num) {
 这样最简单的思路就是在页面中创建一个 input 元素，但是次元素不能设置成`display:none`，可以设置成`position:relative;left:-9999px`，这样DOM结构也存在。这样再将此input元素的值设置成需要复制的内容，再使用input.select()方法选中，最后使用`document.execCommand("copy")`即可执行复制命令。
 
 
-### 7.将字符串变成对象
+### 7.将字符串描述的数组变成对象
 
 使用 JSON.Parse 可以很方便地将 JSON 字符串变成 由字符串描述的 JS 值或者对象。举个例子比如将``'[a, [b], c]'``变成一个对象。可以用如下的方法：
 
