@@ -196,3 +196,10 @@ const arr = JSON.parse(str.replace(/\w+/g, match => `"${match}"`))
 console.log(arr) //  ["a", ["b"], "c"]
 ```
 这样就可以轻松地将字符串变成对象，相比于进行字符串操作要简单的多。
+
+### 8.使用FormData上传文件
+
+**踩坑**
+使用 FormData post 上传文件的时候注意不要设置 headers,这样容易造成`no multipart boundary`的问题，因为会为请求头正确设置边界，但如果你设置了，你的服务器都没法预知你的边界是什么（因为边界是被自动加到请求头的）
+
+不论是 fetch 还是 ajax 发的请求都需要注意这个问题
