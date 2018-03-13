@@ -14,7 +14,9 @@ if (!window.location.origin) {
 }
 ```
 
-### 3.git rebase
+### 3.git
+
+#### 3.1 git rebase
 
 假设我的远程分支是 origin, 我新建了一个分支是 mywork,然后在分支上做了一些修改，做了两个提交 C3 C4。
 
@@ -41,6 +43,10 @@ if (!window.location.origin) {
 可以在任意时候通过`git rebase --abort`来停止rebase,这个时候 mywork 分支会回到 rebase 开始前的状态。
 
 使用`git rebase`要住一个准则就是 **一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。** 因为此时可能有别人在你的分支的基础上开发新的需求，如果此时再对分支进行变基，会使得别人的提交一团糟。
+
+#### 3.2 git reset
+
+使用`git reset`回退版本，其中 HEAD 表示当前提交，例如使用 `git reset HEAD` 使用代表当前提交。`git reset --hard HEAD~1`代表回退到上一个commit信息，当前 HEAD 指针指向你的上一个提交，此时你的代码已经落后于远程分支，因此需要使用`git push --force`来强推你的代码。**注意这个命令可能导致你的提交之后别人的提交要丢失，所以千万要谨慎**。
 
 ### 4.Linux 系统用户账号管理
 #### 1.添加新的用户账号
