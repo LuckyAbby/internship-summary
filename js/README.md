@@ -203,3 +203,48 @@ console.log(arr) //  ["a", ["b"], "c"]
 使用 FormData post 上传文件的时候注意不要设置 headers,这样容易造成`no multipart boundary`的问题，因为会为请求头正确设置边界，但如果你设置了，你的服务器都没法预知你的边界是什么（因为边界是被自动加到请求头的）
 
 不论是 fetch 还是 ajax 发的请求都需要注意这个问题
+
+### 9.短轮询去请求数据
+
+有个日志详情页面，需要去实时更新页面上的数据，考虑到一系列的原因，最后使用短轮询。这种使用 arguments.callee 的方法可以控制首次渲染和后面每次拉取数据的间隔时间不同。
+
+```
+setTimeout(function(){
+  // 封装的发送ajax请求的函数
+  requestData(
+    'POST',
+    '/api',
+    { workId: workId },
+    '获取数据失败'
+  )
+  .done(data => {
+    render(data);
+  });
+  setTimeout(arguments.callee, 5000);
+}, 500);
+```
+
+### 使用 HTML5 datalist 元素
+
+项目中用到一个需要可输入的下拉框，自己发现还有 datalist 元素，就简单试了一下。
+```
+<input type="text" name="template" id="templateInput" list="templateList" />
+<datalist id="templateList">
+</datalist>
+```
+<datalist> 元素会在填写 <input> 字段时，显示一列 <option> 作为提示，实现的效果类似于可输入的下拉框。
+
+重点是如何模仿select的选中事件，如何在选择某个option时进行一些操作。提供一种思路：在 input 输入框上绑定 change 事件，判断此时的 option 如果有某个值等于 input 里面的值则表示在这之前应该是选中了这个 input 的值的。因为按理 input 里面的值总是会在下拉框里面出现。
+
+```
+// 以 jQuery 事件代理为例
+$('body').on('change', '#templateInput', function(){
+    var options = $('datalist')[0].options;
+    var val = $(this).val();
+     Array.prototype.slice.call(options).forEach(item => {
+      if (item.value === val) {
+        // do something
+      }
+   })
+});
+```
